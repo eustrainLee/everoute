@@ -28,6 +28,7 @@ import (
 	"github.com/contiv/libOpenflow/openflow13"
 	"github.com/contiv/libOpenflow/protocol"
 	"github.com/contiv/ofnet/ofctrl"
+	"k8s.io/klog"
 )
 
 //nolint
@@ -172,6 +173,7 @@ func (l *LocalBridge) processArp(pkt protocol.Ethernet, inPort uint32) {
 		select {
 		case l.datapathManager.ArpChan <- ArpInfo{InPort: inPort, Pkt: arpIn, BrName: l.name}:
 		default: // Non-block when arpChan is full
+			klog.Infof("drop arp pkt: %+v", arpIn)
 		}
 	default:
 		log.Infof("error pkt type")

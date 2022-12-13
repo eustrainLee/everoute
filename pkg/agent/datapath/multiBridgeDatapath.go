@@ -134,7 +134,7 @@ const (
 
 	MaxRoundNum = 15
 
-	MaxArpChanCache = 100
+	MaxArpChanCache = 2000
 
 	MaxCleanConntrackChanSize  = 2000
 	MaxCleanConntrackWorkerNum = 5
